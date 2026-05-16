@@ -71,7 +71,7 @@ class _MobileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final avatarRadius = MediaQuery.of(context).size.height * 0.45 * 0.4;
+    final avatarRadius = MediaQuery.of(context).size.height * 0.45 * 0.2;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
