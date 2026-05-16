@@ -30,12 +30,14 @@ class HomePage extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: isMobile ? null : MediaQuery.of(context).size.height,
+              height: isMobile
+                  ? MediaQuery.of(context).size.height * 0.45
+                  : MediaQuery.of(context).size.height,
               color: const Color(0xFF3A3A3A),
               padding: isMobile
-                  ? EdgeInsets.zero
+                  ? const EdgeInsets.symmetric(horizontal: 24, vertical: 24)
                   : const EdgeInsets.symmetric(horizontal: 46, vertical: 46),
-              alignment: isMobile ? null : Alignment.centerLeft,
+              alignment: Alignment.centerLeft,
               child: isMobile ? const _MobileHeader() : const _DesktopHeader(),
             ),
             Container(
@@ -69,32 +71,27 @@ class _MobileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
+    final avatarRadius = MediaQuery.of(context).size.height * 0.45 * 0.4;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(
-          width: double.infinity,
-          height: screenHeight * 0.45,
-          child: Image.network(
+        CircleAvatar(
+          radius: avatarRadius,
+          backgroundImage: const NetworkImage(
             'https://avatars.githubusercontent.com/will-ch-h',
-            fit: BoxFit.cover,
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-          child: Text(
-            'will-ch-h',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.2,
-            ),
+        const SizedBox(width: 20),
+        const Text(
+          'will-ch-h',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.2,
           ),
         ),
-        // information goes here
       ],
     );
   }
