@@ -23,18 +23,29 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            color: const Color(0xFF3A3A3A),
-            padding: const EdgeInsets.all(16),
-            child: const CircleAvatar(
-              radius: 36,
-              backgroundImage: NetworkImage('https://github.com/will-ch-h.png'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height,
+              color: const Color(0xFF3A3A3A),
+              padding: const EdgeInsets.symmetric(horizontal: 46, vertical: 26),
+              alignment: Alignment.centerLeft,
+              child: const CircleAvatar(
+                radius: 76,
+                backgroundImage: NetworkImage(
+                  'https://avatars.githubusercontent.com/will-ch-h',
+                ),
+              ),
             ),
-          ),
-        ],
+            Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height,
+              color: const Color(0xFF2B2B2B),
+            ),
+          ],
+        ),
       ),
     );
   }
