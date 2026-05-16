@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
               height: MediaQuery.of(context).size.height,
               color: const Color(0xFF3A3A3A),
               padding: const EdgeInsets.symmetric(horizontal: 46, vertical: 46),
-              alignment: isMobile ? Alignment.topLeft : Alignment.centerLeft,
+              alignment: isMobile ? Alignment.center : Alignment.centerLeft,
               child: isMobile ? const _MobileHeader() : const _DesktopHeader(),
             ),
             Container(
@@ -67,28 +67,28 @@ class _MobileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final avatarRadius = screenHeight * 0.15;
+
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const CircleAvatar(
-              radius: 40,
-              backgroundImage: NetworkImage(
-                'https://avatars.githubusercontent.com/will-ch-h',
-              ),
-            ),
-            const SizedBox(width: 16),
-            const Text(
-              'will-ch-h',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        CircleAvatar(
+          radius: avatarRadius,
+          backgroundImage: const NetworkImage(
+            'https://avatars.githubusercontent.com/will-ch-h',
+          ),
+        ),
+        SizedBox(height: screenHeight * 0.04),
+        const Text(
+          'will-ch-h',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.2,
+          ),
         ),
         const SizedBox(height: 24),
         // information goes here
