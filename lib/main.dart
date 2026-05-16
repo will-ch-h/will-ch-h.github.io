@@ -30,10 +30,12 @@ class HomePage extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height,
+              height: isMobile ? null : MediaQuery.of(context).size.height,
               color: const Color(0xFF3A3A3A),
-              padding: const EdgeInsets.symmetric(horizontal: 46, vertical: 46),
-              alignment: isMobile ? Alignment.center : Alignment.centerLeft,
+              padding: isMobile
+                  ? EdgeInsets.zero
+                  : const EdgeInsets.symmetric(horizontal: 46, vertical: 46),
+              alignment: isMobile ? null : Alignment.centerLeft,
               child: isMobile ? const _MobileHeader() : const _DesktopHeader(),
             ),
             Container(
@@ -68,29 +70,30 @@ class _MobileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final avatarRadius = screenHeight * 0.15;
 
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CircleAvatar(
-          radius: avatarRadius,
-          backgroundImage: const NetworkImage(
+        SizedBox(
+          width: double.infinity,
+          height: screenHeight * 0.45,
+          child: Image.network(
             'https://avatars.githubusercontent.com/will-ch-h',
+            fit: BoxFit.cover,
           ),
         ),
-        SizedBox(height: screenHeight * 0.04),
-        const Text(
-          'will-ch-h',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.2,
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          child: Text(
+            'will-ch-h',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+            ),
           ),
         ),
-        const SizedBox(height: 24),
         // information goes here
       ],
     );
